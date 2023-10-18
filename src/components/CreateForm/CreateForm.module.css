@@ -1,0 +1,80 @@
+.form {
+  background-color: var(--clr-bg-2);
+  border-radius: var(--radius);
+  width: min(90%, 700px);
+  margin-inline: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.title {
+  background: var(--gradient);
+  font-weight: var(--bold);
+  margin-bottom: 20px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.innerBox {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.innerBox label {
+  font-weight: var(--semibold);
+  font-size: 16px;
+  color: var(--clr-outline);
+  text-align: center;
+}
+
+.innerBox div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.innerBox input,
+.innerBox select,
+.innerBox textarea {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  outline: 1px solid var(--clr-text);
+  border-radius: var(--radius);
+  color: var(--clr-text);
+}
+
+.innerBox textarea {
+  resize: none;
+}
+
+.innerBox select {
+  padding: 5px;
+}
+
+.innerBox select option {
+  padding: 10px;
+}
+
+.innerBox span {
+  color: crimson;
+  font-size: 14px;
+  font-weight: var(--semibold);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.btnSubmit {
+  background-color: var(--clr-accent);
+  width: var(--btn-w);
+  height: var(--btn-h);
+  border-radius: var(--radius);
+  margin-left: auto;
+}

@@ -1,0 +1,29 @@
+.footer {
+  padding: 30px 0;
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer h6 {
+  font-size: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.social a {
+  color: var(--clr-text);
+  font-size: 20px;
+  transition: transform ease 200ms;
+}
+
+.social a:hover {
+  transition: transform ease 200ms;
+  transform: scale(1.3);
+}

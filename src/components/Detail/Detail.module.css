@@ -1,0 +1,115 @@
+.detail {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: 20px;
+	gap: 20px;
+	margin-inline: auto;
+	max-width: 1000px;
+}
+
+.poster {
+	height: 300px;
+	overflow: hidden;
+	height: 400px;
+}
+.poster > img {
+	border-radius: var(--radius);
+	height: 100%;
+}
+
+/* .poster, */
+.text {
+	flex: 1 0 50%;
+}
+
+.text {
+	width: 100%;
+}
+
+.text {
+	text-align: center;
+}
+
+.name {
+	text-align: center;
+	color: var(--clr-accent);
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	max-width: 350px;
+	margin-inline: auto;
+}
+
+.colorShared {
+	color: var(--clr-outline);
+	letter-spacing: 1px;
+	font-weight: var(--semibold);
+	margin-top: 10px;
+}
+
+.textOpacity,
+.divDescription {
+	opacity: 70%;
+	line-height: 1.6;
+	font-size: 16px;
+}
+
+.divDescription {
+	max-width: 95%;
+	margin-inline: auto;
+}
+
+.text span {
+	margin-right: 20px;
+}
+
+.back {
+	--size: 30px;
+	width: var(--size);
+	height: var(--size);
+	position: absolute;
+	left: 20px;
+	top: -30px;
+	display: grid;
+	place-content: center;
+	background-color: var(--clr-accent);
+	border-radius: var(--radius);
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	margin-top: 30px;
+	gap: 20px;
+}
+
+.flex div {
+	border-radius: var(--radius);
+	flex: 0 1 100%;
+	padding: 10px 0;
+	text-align: center;
+	display: grid;
+	place-items: center;
+	font-size: 14px;
+	background-color: var(--clr-bg-2);
+}
+
+.flex .platformsWrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.flex .platformsWrapper div {
+	flex: 0 0 30%;
+}
+
+@media (width > 600px) {
+	.flex {
+		flex-direction: row;
+	}
+}

@@ -1,0 +1,108 @@
+.welcome {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #020202de, #020202de),
+		url('../../assets/background.webp') no-repeat center/cover;
+}
+
+.text {
+	position: relative;
+	width: 100%;
+	display: block;
+	z-index: 2;
+	font-size: clamp(2.8rem, 2vw, 3rem);
+	font-weight: var(--bold);
+	text-align: center;
+	animation: titleFade ease 800ms;
+}
+
+.roller {
+	width: 100%;
+	height: 70px;
+	margin: 20px 0;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rollerText {
+	color: var(--clr-accent);
+	position: absolute;
+	top: 0;
+	animation: slide 5s infinite;
+}
+
+@keyframes slide {
+	0% {
+		top: 2rem;
+	}
+	25% {
+		top: -4rem;
+	}
+	50% {
+		top: -8rem;
+	}
+	/* 72.5% {
+		top: -10rem;
+	} */
+}
+.btn {
+	--size: 60px;
+	font-size: 20px;
+	margin-inline: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	border: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+@keyframes titleFade {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+	width: 60px;
+	margin-top: 40px;
+	margin-inline: auto;
+	aspect-ratio: 1;
+	--g: conic-gradient(from -90deg at 10px 10px, #fff 90deg, #0000 0);
+	background: var(--g), var(--g), var(--g);
+	background-size: 50% 50%;
+	animation: l19 1s infinite;
+}
+@keyframes l19 {
+	0% {
+		background-position: 0 0, 10px 10px, 20px 20px;
+	}
+	33% {
+		background-position: 10px 10px;
+	}
+	66% {
+		background-position: 0 20px, 10px 10px, 20px 0;
+	}
+	100% {
+		background-position: 0 0, 10px 10px, 20px 20px;
+	}
+}

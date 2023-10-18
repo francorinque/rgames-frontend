@@ -1,0 +1,91 @@
+.box {
+	width: 100%;
+	/* outline: 1px solid var(--clr-outline); */
+	position: relative;
+	border-radius: var(--radius);
+	overflow: hidden;
+	height: 400px;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.box::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: #000;
+	z-index: 1;
+	opacity: 30%;
+}
+
+.boxInner {
+	padding: 20px;
+	height: 100%;
+	box-shadow: 0 0 10px #0000;
+	position: relative;
+	z-index: 2;
+}
+
+.image {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	transition: transform ease 200ms;
+}
+
+.name {
+	font-size: 20px;
+	display: block;
+	line-height: 1;
+	font-weight: var(--semibold);
+	letter-spacing: 1px;
+}
+
+.rating {
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	font-weight: var(--semibold);
+	color: var(--clr-text);
+}
+
+.text {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.viewMore {
+	color: var(--clr-accent);
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 18px;
+	transition: transform ease 200ms;
+	cursor: pointer;
+}
+
+.viewMore:hover {
+	transform: translateX(2px);
+	transition: transform ease 200ms;
+}
+
+
+.clear{
+	background-color: transparent;
+	color: var(--clr-text);
+	font-size: 22px;
+	position: absolute;
+	top: 10px;
+}
+
+.clear:hover{
+	color: var(--clr-danger);
+}
