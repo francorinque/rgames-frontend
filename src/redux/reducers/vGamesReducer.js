@@ -1,4 +1,4 @@
-import { filtersTypes, vGamesTypes } from "../actions/actionsTypes";
+import { filtersTypes, vGamesTypes } from "../actions/actionsTypes"
 
 const initialState = {
   vGamesOriginal: [],
@@ -7,13 +7,13 @@ const initialState = {
   isLoading: false,
   error: null,
   page: 1,
-};
+}
 
 const vGamesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     // * GAMES
     case vGamesTypes.FETCH_GAMES:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true }
 
     case vGamesTypes.FETCH_GAMES_SUCCESS:
       return {
@@ -21,31 +21,30 @@ const vGamesReducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         shownvGames: payload,
         vGamesOriginal: payload,
-      };
+      }
 
     case vGamesTypes.RESET_GAMES:
       return {
         ...state,
         shownvGames: state.vGamesOriginal,
-        vGamesFiltered: state.vGamesOriginal,
-      };
+        vGamesFiltered: [],
+      }
 
     case vGamesTypes.FETCH_GAMES_FAILED:
-      return { ...state, isLoading: false, error: payload };
+      return { ...state, isLoading: false, error: payload }
 
     case vGamesTypes.DELETE_VIDEOGAME: {
       const cleanGames = [...state.vGamesOriginal].filter(
         (g) => g.id !== payload
-      );
-      const filtered = [...state.vGamesFiltered].filter(
-        (g) => g.id !== payload
-      );
+      )
+      const filtered = [...state.vGamesFiltered].filter((g) => g.id !== payload)
+
       return {
         ...state,
         vGamesOriginal: cleanGames,
         vGamesFiltered: filtered,
-        shownvGames: filtered,
-      };
+        shownvGames: state.vGamesFiltered.length > 0 ? filtered : cleanGames,
+      }
     }
 
     // * SEARCH BY GAME
@@ -54,72 +53,105 @@ const vGamesReducer = (state = initialState, { type, payload }) => {
         ...state,
         shownvGames: payload,
         vGamesFiltered: state.vGamesFiltered.length === 0 && payload,
-      };
+      }
     }
 
     // * PAGINATION
     case vGamesTypes.CHANGE_PAGE:
-      return { ...state, page: payload };
+      return { ...state, page: payload }
 
     // * FILTERS
     case filtersTypes.FILTER_BY_GENRE: {
-      let filtered = null;
+      let filtered = null
 
       if (state.vGamesFiltered.length === 0) {
         filtered =
           [...state.vGamesOriginal].filter((vGame) => {
-            return vGame.genres.some((genre) => genre.name === payload);
-          }) || [];
+            return vGame.genres.some((genre) => genre.name === payload)
+          }) || []
       } else {
         filtered =
           [...state.vGamesFiltered].filter((vGame) => {
-            return vGame.genres.some((genre) => genre.name === payload);
-          }) || [];
+            return vGame.genres.some((genre) => genre.name === payload)
+          }) || []
       }
 
       return {
         ...state,
         shownvGames: payload === "ALL" ? state.vGamesOriginal : filtered,
         vGamesFiltered: payload === "ALL" ? state.vGamesOriginal : filtered,
-      };
+      }
     }
 
     case filtersTypes.FILTER_BY_NAME: {
-      const orderedByName = [...state.shownvGames].sort((a, b) => {
-        return payload === "Z-A"
-          ? b.name.localeCompare(a.name)
-          : a.name.localeCompare(b.name);
-      });
+      let orderedByName = null
+
+      if (payload === "Z-A") {
+        orderedByName = [...state.shownvGames].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        )
+      } else if (payload === "A-Z") {
+        orderedByName = [...state.shownvGames].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        )
+      } else if (payload === "default") {
+        orderedByName = [...state.vGamesFiltered]
+      }
+
       return {
         ...state,
         shownvGames: orderedByName,
-      };
+      }
     }
 
     case filtersTypes.FILTER_BY_RATING: {
-      const orderedByRating = [...state.shownvGames].sort((a, b) => {
-        return payload === "best" ? b.rating - a.rating : a.rating - b.rating;
-      });
+      let orderedByRating = null
 
-      return { ...state, shownvGames: orderedByRating };
-    }
-
-    case filtersTypes.FILTER_BY_ORIGIN: {
-      let filteredByOrigin =
-        state.vGamesFiltered.length === 0
-          ? [...state.vGamesOriginal].filter((game) => game.created === true)
-          : [...state.vGamesFiltered].filter((game) => game.created === true);
+      if (payload === "best") {
+        orderedByRating = [...state.shownvGames].sort(
+          (a, b) => b.rating - a.rating
+        )
+      } else if (payload === "worst") {
+        orderedByRating = [...state.shownvGames].sort(
+          (a, b) => a.rating - b.rating
+        )
+      } else if (payload === "default") {
+        orderedByRating =
+          state.vGamesFiltered.length > 0
+            ? [...state.vGamesFiltered]
+            : [...state.vGamesOriginal]
+      }
 
       return {
         ...state,
-        shownvGames:
-          payload === "default" ? state.vGamesFiltered : filteredByOrigin,
-      };
+        shownvGames: orderedByRating,
+      }
+    }
+
+    case filtersTypes.FILTER_BY_ORIGIN: {
+      let filteredByOrigin = null
+
+      if (payload === "created") {
+        filteredByOrigin =
+          state.vGamesFiltered.length > 0
+            ? [...state.vGamesFiltered].filter((game) => game.created === true)
+            : [...state.vGamesOriginal].filter((game) => game.created === true)
+      } else if (payload === "default") {
+        filteredByOrigin =
+          state.vGamesFiltered.length > 0
+            ? [...state.vGamesFiltered]
+            : [...state.vGamesOriginal]
+      }
+
+      return {
+        ...state,
+        shownvGames: filteredByOrigin,
+      }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default vGamesReducer;
+export default vGamesReducer

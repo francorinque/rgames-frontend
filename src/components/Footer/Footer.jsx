@@ -1,6 +1,6 @@
-import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa6"
 
-import style from "./Footer.module.css";
+import style from "./Footer.module.css"
 
 const Footer = () => {
   return (
@@ -8,14 +8,14 @@ const Footer = () => {
       <h6>Created by: Rinque Franco.</h6>
 
       <div className={style.social}>
-        <a href="#">
+        <a href="https://www.linkedin.com/in/franco-agustin-rinque/">
           <FaLinkedinIn />
         </a>
-        <a href="#">
+        <a href="https://github.com/francorinque">
           <FaGithub />
         </a>
       </div>
     </footer>
-  );
-};
-export default Footer;
+  )
+}
+export default Footer
